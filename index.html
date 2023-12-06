@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Pakistan Zindabad</title>
+
+</head>
+<body>
+
+<div class="container">
+
+    <!-- filter -->
+    <select name="" id="filterdata" class="form-control mt-5 mb-5" onclick="Filter(this.value)">
+        <option value="all">Select All Data</option>
+       
+    </select>
+    <!-- filter -->
+
+
+    <table class="table text-center">
+        <thead>
+            <tr>
+                <th>Student Id</th>
+                <th>Student Name</th>
+                <th>Student Father_Name</th>
+                <th>Class</th>
+                <th>Contact</th>
+                
+            </tr>
+        </thead>
+        <tbody id="row">
+          
+        </tbody>
+    </table>
+</div>
+<script src="student.js"></script>
+
+<script>
+   function Display_Data(){
+    for(var i=0; i < data.length; i++){
+        document.getElementById('row').innerHTML += `
+        <tr>
+            <td>${i}</td>
+        
+        <td>${data[i].Student_Name}</td>
+        <td>${data[i].Father_Name}</td>
+        <td>${data[i].Class}</td>
+        <td>${data[i].Contact}</td>
+        
+        </tr>
+        `   
+
+        document.getElementById('filterdata').innerHTML+=`
+        <option value="${i}">${i}</option>
+        `
+        
+}
+
+   }
+
+
+// filter work
+function Filter(myid){
+    if(myid === "all"){
+        document.getElementById('row').innerHTML ="";
+        document.getElementById('filterdata').innerHTML =`
+        <option value="all">Select All Data  </option>`
+
+        Display_Data()
+       
+
+    }
+    else{
+
+        var dataToMap=[data[myid]]
+    for(var i=0; i < dataToMap.length; i++){
+        document.getElementById('row').innerHTML = `
+        <tr>
+            <td>${myid}</td>
+       
+        <td>${dataToMap[i].Student_Name}</td>
+        <td>${dataToMap[i].Father_Name}</td>
+        <td>${dataToMap[i].Class}</td>
+        <td>${dataToMap[i].Contact}</td>
+       </tr>
+        `   
+
+          
+}
+
+
+
+    }
+
+    
+   
+    
+}
+
+Display_Data()
+
+</script>
+
+
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+</body>
+</html>
